@@ -5,8 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Skill Monitor">
 <meta name="theme-color" content="#15505a">
-<title>Gradebook</title>
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACbklEQVR4nO3dTVLbMACA0dLpFei56BbOx5p79RTs2NCv4NjCRnpvHf/M+IuSSJrJ3f3D4w/4l59n3wDXJQ6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImD9OvsG+Bjf1+eP//i33+ejrqukePqNpVxw+v/QxyXdtuTPqoPcVzXnmd8SB/iuKj9T3f/GcRBEgdJHCRxkMRBEgdJHCRxkMRBEgdpqiX7s5a2ZzXPyHHi0vasJonj3KXtWc0Qx+lL27P69nFcYWl7Vt8+DsYRB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcpKn2kH6lFfarGjlusch+VXFsts5+VXFss9R+VXFssNp+VXGQxEESB0kcJHGQhs+QrjCTOKuxI8ciM4mzGhjHOjOJsxoVx1IzibMaEsdqM4mz8muFJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEhD4tj/V22fP4NrjTvDqJFjz51tPda1jj32zcCPldvuz1FnHfXe2O8cV36vuNaH7u4fHo86F5Pxa4UkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgvQJkGG7tbJjVNgAAAABJRU5ErkJggg==">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAACbklEQVR4nO3dTVLbMACA0dLpFei56BbOx5p79RTs2NCv4NjCRnpvHf/M+IuSSJrJ3f3D4w/4l59n3wDXJQ6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImD9OvsG+Bjf1+eP//i33+ejrqukePqNpVxw+v/QxyXdtuTPqoPcVzXnmd8SB/iuKj9T3f/GcRBEgdJHCRxkMRBEgdJHCRxkMRBEgdpqiX7s5a2ZzXPyHHi0vasJonj3KXtWc0Qx+lL27P69nFcYWl7Vt8+DsYRB0kcJHGQxEESB0kcJHGQxEESB0kcJHGQxEESB0kcpKn2kH6lFfarGjlusch+VXFsts5+VXFss9R+VXFssNp+VXGQxEESB0kcJHGQhs+QrjCTOKuxI8ciM4mzGhjHOjOJsxoVx1IzibMaEsdqM4mz8muFJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEjiIImDJA6SOEhD4tj/V22fP4NrjTvDqJFjz51tPda1jj32zcCPldvuz1FnHfXe2O8cV36vuNaH7u4fHo86F5Pxa4UkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgiYMkDpI4SOIgvQJkGG7tbJjVNgAAAABJRU5ErkJggg==">
+<title>Skill Monitor</title>
 <style>
 /* ============================== TOKENS ============================== */
 :root{
@@ -516,7 +519,7 @@ function renderSetup(){
   var wrap=h('<div class="center-wrap"></div>');
   var card=h('<div class="setup-card"></div>');
   card.innerHTML =
-    '<div class="brand">Gradebook</div>'+
+    '<div class="brand">Skill Monitor</div>'+
     '<div class="tag">Connect this device to your Google Sheet backend.</div>'+
     '<div class="field"><label>Web app URL (ends in /exec)</label>'+
       '<input class="input" id="s_url" placeholder="https://script.google.com/macros/s/…/exec"></div>'+
@@ -544,7 +547,7 @@ function renderSetup(){
 }
 
 function renderBootLoading(){
-  $app.innerHTML='<div class="center-wrap"><div style="text-align:center"><div class="brand" style="font-size:26px;font-weight:800;color:var(--primary-ink)">Gradebook</div><div class="muted small" style="margin-top:10px">Loading your data…</div></div></div>';
+  $app.innerHTML='<div class="center-wrap"><div style="text-align:center"><div class="brand" style="font-size:26px;font-weight:800;color:var(--primary-ink)">Skill Monitor</div><div class="muted small" style="margin-top:10px">Loading your data…</div></div></div>';
 }
 
 /* ---------------------------- pin gate ----------------------------- */
@@ -600,7 +603,7 @@ function topbar(){
   var cls=activeClass();
   var bar=h('<div class="topbar"></div>');
   bar.innerHTML=
-    '<h1>Gradebook</h1>'+
+    '<h1>Skill Monitor</h1>'+
     '<div class="ctx">'+(cls?esc(cls.name):"No class yet")+'</div>'+
     '<span class="sync-pill" id="syncpill"><span class="dot"></span><span class="txt">…</span></span>';
   paintSyncPillInto(bar.querySelector("#syncpill"));
