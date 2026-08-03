@@ -185,6 +185,17 @@ textarea.input{min-height:96px;padding:12px 14px;line-height:1.5;resize:vertical
 .student-nav .who .pos{font-size:12px;color:var(--ink-faint)}
 .student-nav button.arrow{width:48px;height:48px;border-radius:14px;background:var(--surface-2);font-size:22px;display:flex;align-items:center;justify-content:center}
 .student-nav button.arrow:disabled{opacity:.3}
+.spick{display:grid;grid-template-columns:repeat(auto-fit,minmax(72px,1fr));gap:7px;margin:0 0 16px}
+.spick button{padding:9px 2px;border-radius:10px;background:var(--surface);border:1px solid var(--line);
+  display:flex;flex-direction:column;align-items:center;gap:5px;min-height:46px}
+.spick button .cd{font-size:13px;font-weight:700;color:var(--ink);line-height:1.1;
+  max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.spick button .dot{width:6px;height:6px;border-radius:50%;background:var(--g0);flex:0 0 auto}
+.spick button .dot.part{background:var(--g3)}
+.spick button .dot.full{background:var(--g5)}
+.spick button.cur{background:var(--primary);border-color:var(--primary)}
+.spick button.cur .cd{color:#fff}
+.spick button:active{transform:scale(.97)}
 
 .grade-block{margin-bottom:18px}
 .grade-block .dom-title{font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint);margin:0 2px 10px}
@@ -805,8 +816,34 @@ function paintGrade(){
   nav.querySelector("#prevst").onclick=function(){ if(STATE.gradeStudentIdx>0){STATE.gradeStudentIdx--;paintGrade();} };
   nav.querySelector("#nextst").onclick=function(){ if(STATE.gradeStudentIdx<students.length-1){STATE.gradeStudentIdx++;paintGrade();} };
 
+  // quick student picker: all codes at once, with today's status dot
+  if(students.length>1){
+    var pick=h('<div class="spick"></div>');
+    students.forEach(function(s2,i2){
+      var p=todayProgress(cls,s2);
+      var cls2 = p.total>0 && p.done>=p.total ? "full" : (p.done>0 ? "part" : "");
+      var b=h('<button class="'+(i2===STATE.gradeStudentIdx?"cur":"")+'">'+
+        '<span class="cd">'+esc(s2.code)+'</span><span class="dot '+cls2+'"></span></button>');
+      b.title=s2.code+" — "+p.done+"/"+p.total+" graded today";
+      b.onclick=function(){ STATE.gradeStudentIdx=i2; paintGrade(); window.scrollTo(0,0); };
+      pick.appendChild(b);
+    });
+    host.appendChild(pick);
+  }
+
   if(STATE.gradeTab==="skills") paintSkillGrading(host,cls,st);
   else paintTrackGrading(host,cls,st);
+}
+
+/* how much of the current tab is filled in for this student on the selected date */
+function todayProgress(cls, st){
+  var d=STATE.gradeDate, done=0, total=0;
+  if(STATE.gradeTab==="skills"){
+    classSkills(cls).forEach(function(x){ total++; if(entryVal(d,cls.id,st.id,x.skill.id)!=null) done++; });
+  } else {
+    TRACK_KEYS.forEach(function(tk){ total++; if(entryVal(d,cls.id,st.id,TRACK_ITEM_PREFIX+tk)!=null) done++; });
+  }
+  return { done:done, total:total };
 }
 
 function statusTag(date,cls,student,item){
